@@ -111,8 +111,7 @@ function App() {
               value={selectedDate}
             />
           </Grid> */}
-     
-
+  
           {/* Add the event related pictures, theme, or music(alarm ++) */}
         </Grid>
       </Paper>
