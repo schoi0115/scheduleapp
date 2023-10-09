@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Container, Paper, Grid, Typography, Button, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, TextField, Divider } from '@mui/material';
+import { Add, Edit, Delete } from '@mui/icons-material';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
@@ -47,51 +49,104 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Schedule App</h1>
-      <div>
-        <input
-          type="text"
-          placeholder="Title"
-          value={newEvent.title}
-          onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-        />
-        <input
-          type="date"
-          value={newEvent.date}
-          onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
-        />
-        <input
-          type="time"
-          value={newEvent.time}
-          onChange={(e) => setNewEvent({ ...newEvent, time: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Description"
-          value={newEvent.description}
-          onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
-        />
-        <button onClick={handleAddEvent}>
-          {editingEventIndex !== null ? 'Update Event' : 'Add Event'}
-        </button>
-      </div>
-      {/* <div>
-        <Calendar
-          onChange={setSelectedDate}
-          value={selectedDate}
-        />
-      </div> */}
-      <ul>
-        {events.map((event, index) => (
-          <li key={index}>
-            <strong>{event.title}</strong> - {event.date} {event.time}{' '} {event.description}
-            <button onClick={() => handleEditEvent(index)}>Edit</button>
-            <button onClick={() => handleDeleteEvent(index)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Container maxWidth="lg">
+      <Paper elevation={3} style={{ padding: '20px' }}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+            <Typography variant="h4" gutterBottom>
+              Schedule App
+            </Typography>
+            <TextField
+              label="Title"
+              fullWidth
+              variant="outlined"
+              margin="dense"
+              value={newEvent.title}
+              onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+            />
+            <TextField
+              type="date"
+        
+              fullWidth
+              variant="outlined"
+              margin="dense"
+              value={newEvent.date}
+              onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
+            />
+            <TextField
+              type="time"
+        
+              fullWidth
+              variant="outlined"
+              margin="dense"
+              value={newEvent.time}
+              onChange={(e) => setNewEvent({ ...newEvent, time: e.target.value })}
+            />
+            <TextField
+              label="Description"
+              fullWidth
+              variant="outlined"
+              margin="dense"
+              multiline
+              rows={4}
+              value={newEvent.description}
+              onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              startIcon={editingEventIndex !== null ? <Edit /> : <Add />}
+              onClick={handleAddEvent}
+              fullWidth
+            >
+              {editingEventIndex !== null ? 'Update Event' : 'Add Event'}
+            </Button>
+          </Grid>
+          {/* <Grid item xs={12} md={6}>
+            <Typography variant="h6" gutterBottom>
+              Calendar View
+            </Typography>
+            <Calendar
+              onChange={setSelectedDate}
+              value={selectedDate}
+            />
+          </Grid> */}
+     
+
+          {/* Add the event related pictures, theme, or music(alarm ++) */}
+        </Grid>
+      </Paper>
+
+      <Paper elevation={3} style={{ marginTop: '20px', padding: '20px' }}>
+        <Typography variant="h6" gutterBottom>
+          Event List
+        </Typography>
+        <List>
+          {events.map((event, index) => (
+            <div key={index}>
+              <ListItem>
+                <ListItemText
+                  primary={event.title}
+                  secondary={`${event.date} ${event.time}`}
+                />
+                <ListItemSecondaryAction>
+                  <IconButton onClick={() => handleEditEvent(index)}>
+                    <Edit />
+                  </IconButton>
+                  <IconButton onClick={() => handleDeleteEvent(index)}>
+                    <Delete />
+                  </IconButton>
+                </ListItemSecondaryAction>
+              </ListItem>
+              <Typography variant="body2">
+                {event.description}
+              </Typography>
+              <Divider />
+            </div>
+          ))}
+        </List>
+      </Paper>
+    </Container>
   );
 }
 
