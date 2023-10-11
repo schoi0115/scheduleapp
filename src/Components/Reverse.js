@@ -5,11 +5,11 @@ function Reverse() {
     const reverseWord = word.split('').reverse();
     const reverseWordWithJoin = word.split('').reverse().join('');
     // reserWord is a
-    console.log(reverseWord.length)
-    console.log(reverseWordWithJoin.length)
+    // console.log(reverseWord.length)
+    // console.log(reverseWordWithJoin.length)
 
-    console.log(reverseWord.size)
-    console.log(reverseWordWithJoin.size)
+    // console.log(reverseWord.size)
+    // console.log(reverseWordWithJoin.size)
     const [fruits, setFruits] = useState(["apple", "orange", "mango"]);
     const reverseWords = () => {
         const reversedFruits = fruits.map(word => word.split('').reverse().join(''));
@@ -21,6 +21,11 @@ function Reverse() {
         const reversedString = reversedFruits.join(', ');
         setFruits([reversedString]);
     }
+
+    const fruitArray = ['apple', 'mango', 'banana'];
+    const reversedFruitArray = fruitArray.map(word => word.split('').reverse().join(''));
+    console.log(reversedFruitArray.length)
+    const reversedFruitArrayAddingComma = reversedFruits.join(', ');
 
     return (
         <div>
@@ -47,6 +52,11 @@ function Reverse() {
                 ))}
             </ul>
             <button onClick={reverseAndJoin}>Reverse Words and Add Commas</button>
+
+            <br />
+            {reversedFruitArray}
+            <br />
+            {reversedFruitArrayAddingComma}
 
         </div>
     );
