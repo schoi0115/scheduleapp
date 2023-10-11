@@ -3,6 +3,7 @@ import { Container, Paper, Grid, Typography, Button, List, ListItem, ListItemTex
 import { Add, Edit, Delete } from '@mui/icons-material';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import Reverse from './Components/Reverse';
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -50,6 +51,7 @@ function App() {
 
   return (
     <Container maxWidth="lg">
+      <Reverse />
       <Paper elevation={3} style={{ padding: '20px' }}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
@@ -66,7 +68,7 @@ function App() {
             />
             <TextField
               type="date"
-        
+
               fullWidth
               variant="outlined"
               margin="dense"
@@ -75,7 +77,7 @@ function App() {
             />
             <TextField
               type="time"
-        
+
               fullWidth
               variant="outlined"
               margin="dense"
@@ -111,7 +113,7 @@ function App() {
               value={selectedDate}
             />
           </Grid> */}
-  
+
           {/* Add the event related pictures, theme, or music(alarm ++) */}
         </Grid>
       </Paper>
@@ -146,6 +148,7 @@ function App() {
         </List>
       </Paper>
     </Container>
+
   );
 }
 
